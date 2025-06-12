@@ -1,27 +1,39 @@
-# Ignore all node_modules directories recursively
+# Node modules
 **/node_modules/
 
-# Ignore all .env files at any level
+# Environment variables
 **/.env
-
-# Optional: also ignore variations like .env.local, .env.development, etc.
 **/.env.*
 
 # macOS system files
-.DS_Store
+**/.DS_Store
 
 # Logs
-logs
-*.log
-npm-debug.log*
-
-# Ignore build output
-dist/
-build/
-.next/
-out/
-
+**/logs/
+**/*.log
 **/npm-debug.log*
 **/yarn-debug.log*
 **/yarn-error.log*
 **/.pnpm-debug.log*
+
+# Build output
+**/dist/
+**/build/
+**/.next/
+**/out/
+
+# Dependencies
+**/.pnp
+**/.pnp.*
+**/.yarn/*
+!**/.yarn/patches
+!**/.yarn/plugins
+!**/.yarn/releases
+!**/.yarn/versions
+
+# Testing
+**/coverage/
+
+# TypeScript
+**/*.tsbuildinfo
+**/next-env.d.ts
