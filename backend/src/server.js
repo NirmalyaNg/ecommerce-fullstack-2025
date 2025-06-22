@@ -2,6 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import authRouter from './routes/auth.js';
+import categoryRouter from './routes/category.js';
+import productRouter from './routes/product.js';
+import orderRouter from './routes/order.js';
 import connectDB from './config/db.js';
 import cookieParser from 'cookie-parser';
 
@@ -22,6 +25,9 @@ app.use(express.json());
 
 // Routes
 app.use('/api/auth', authRouter);
+app.use('/api/category', categoryRouter);
+app.use('/api/product', productRouter);
+app.use('/api/order', orderRouter);
 
 // Mongodb connection
 await connectDB();

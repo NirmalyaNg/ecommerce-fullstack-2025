@@ -97,6 +97,7 @@ export const handleLogin = async (req, res) => {
           email: user.email,
           firstName: user.firstName,
           lastName: user.lastName,
+          isAdmin: user.isAdmin,
         },
       },
     });
@@ -120,7 +121,7 @@ export const handleGetCurrentUser = async (req, res) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findOne({ _id: decoded?._id }).select(
-      'firstName lastName _id email isAdmin'
+      'firstName lastName _id email isAdmin phoneNumber'
     );
     if (!user) {
       return res.status(401).json({
