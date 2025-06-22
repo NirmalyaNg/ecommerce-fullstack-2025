@@ -3,7 +3,7 @@
 import { useCart } from '@/context/CartContext';
 import { useRouter } from 'next/navigation';
 
-const CartSummary = ({ showCheckout = true }: { showCheckout: boolean }) => {
+const CartSummary = ({ showCheckout = true }: { showCheckout?: boolean }) => {
   const { cart: cartItems } = useCart();
   const router = useRouter();
 
