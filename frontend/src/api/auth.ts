@@ -23,14 +23,22 @@ export const registerUser = async (userData: UserData): Promise<AuthResponse> =>
 // Login
 export const loginUser = async (email: string, password: string): Promise<AuthResponse> => {
   try {
+    const cartId = localStorage.getItem('cartId'); // anonymous cart
     const response = await axios.post(
       'http://localhost:8000/api/auth/login',
       {
         email,
         password,
+        cartId,
       },
       { withCredentials: true }
     );
+    // If server returns a new cart ID (after merge), store it
+    const newCartId = response.data?.data?.cartId;
+    if (newCartId) {
+      localStorage.setItem('cartId', newCartId);
+      document.cookie = `cartId=${newCartId}; path=/`;
+    }
     return response.data;
   } catch (error: unknown) {
     return handleAuthError(error);

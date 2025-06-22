@@ -6,6 +6,7 @@ export type UserData = {
   phoneNumber: string;
   password: string;
   confirmPassword: string;
+  isAdmin?: boolean;
   gender: 'Male' | 'Female' | 'Other';
 };
 

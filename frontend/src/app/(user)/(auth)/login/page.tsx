@@ -2,7 +2,7 @@
 
 import { loginUser } from '@/api/auth';
 import { AuthContext } from '@/context/AuthContext';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -15,6 +15,8 @@ type LoginFormValues = {
 const Login = () => {
   const router = useRouter();
   const { handleSetUser } = useContext(AuthContext);
+  const searchParams = useSearchParams();
+  const redirect = searchParams.get('redirect');
   const {
     register,
     handleSubmit,
@@ -34,7 +36,7 @@ const Login = () => {
     if (!!res?.data?.user) {
       handleSetUser(res?.data?.user);
     }
-    router.push('/');
+    router.push(redirect ? `/${redirect}` : '/');
   };
   return (
     <div className='row mt-5'>

@@ -1,13 +1,15 @@
-'use client';
 import { ReactNode } from 'react';
 import './globals.css';
-import AuthContextProvider from '@/context/AuthContext';
+import AuthWrapper from '@/components/auth/AuthWrapper';
+import CartWrapper from '@/components/cart/CartWrapper';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en'>
       <body>
-        <AuthContextProvider>{children}</AuthContextProvider>
+        <AuthWrapper>
+          <CartWrapper>{children}</CartWrapper>
+        </AuthWrapper>
       </body>
     </html>
   );
